@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Varsha Misthan Bhandar</title>
+  </head>
+  <body>
+    <h1 >Varsha Misthan Bhandar Diwali 2020</h1><br>
+    <div >
+        <div class="col-9" style="float: left; ">
+        <form>
+            
+            {% for kk,val in listOFItems.items %}
+            <div class="card" style="width: 14rem; float: left; padding-top: 5px; padding-left: 5px;">
+                <img class="card-img-top" src={{val.imgUrl}} alt="Card image cap">
+                <div class="card-body">
+                  <h5 style="float: left;">{{val.name}}</h5> <h5 style="float: right;" >{{val.price}}/- </h5><br><br>
+                  <input id =1 type="button" name={{val.name}}  value="1 kg" onclick="addItem({'name':this.name ,'quantity':this.id })" > 
+                  <input id =.5 type="button" name={{val.name}}  value="500 g" onclick="addItem({'name':this.name ,'quantity':this.id })" > 
+                  <input id = .25 type="button" name={{val.name}}  value="250 g" onclick="addItem({'name':this.name ,'quantity':this.id })" > 
+                </div>
+              </div>
+            
+            {% endfor %}
+                    
+            
+                </form>
+            </div>
+
+            <div class="col-3" style="float: left;">
+                <h2> Billing Details</h2><br>
+
+                <form method="post" enctype="multipart/form-data" action="submitDetails"> 
+                    {% csrf_token %}    
+                    Phone Number: <input class="input-group-text" type="text" value="" name="customerNumber"><br>
+                    <br>
+
+
+                <table class="table" id="sales"></table>
+                <br><br>
+                <span id = "total"></span>
+                <br><br><br><br>
+                <input type = "hidden" id='purchaseDetails' name="purchaseDetails"  >
+                <input type="hidden" id='totalValue' name="totalValue"  >
+                <input type="submit" value="Submit" >
+                </form>
+            </div>
+      </div>
+   
+     </body>
+
+  <script>
+      var salesValues =[];
+      var sumval=0;
+    //   {'name':'someName','price':500,'quantity':360 },
+    //   {'name':'someName','price':500,'quantity':500 },
+    //   {'name':'someName','price':500,'quantity':500 }
+      
+        var tableheader = ['index','name','price','quantity','total','remove']
+        let tableBodyData= salesValues;
+        priceList={{priceList|safe}};
+
+        function createHeader(table,headervalues){
+            let tHead = table.createTHead();
+            let trow = tHead.insertRow();
+            for (val in headervalues){
+                // console.log(headervalues[val]);
+                let th =document.createElement('th');
+                let text = document.createTextNode(headervalues[val]);
+                th.appendChild(text);
+                trow.appendChild(th);
+            }
+        }
+
+        function addEle(row,val){
+
+            let cell = row.insertCell();
+            let text = document.createTextNode(val);
+            cell.appendChild(text);
+        }
+
+        function createtableBody(table,data){
+            var inc=1; 
+            for (element in data){
+                let row = table.insertRow();
+                addEle(row,inc);
+                var val = data[element]['name']
+                addEle(row,val)
+                var val = data[element]['price']
+                addEle(row,val)
+                var val = data[element]['quantity']
+                addEle(row,val)
+                var val = data[element]['quantity']*data[element]['price']
+                addEle(row,val)
+                var button = document.createElement('td'); 
+                // button.onclick=removeItem(element);
+                button.innerHTML = '<input id= '+inc+ ' class="btn btn-danger" type="button" name="Remove" value="Remove" onclick="removeItem(this.id)">';
+                row.appendChild(button);
+                inc=inc+1;
+                }
+            }
+
+        function addItem(dataToAdd){
+            console.log(dataToAdd);
+            dataToAdd['price']=priceList[dataToAdd['name']];
+            dataToAdd['total']=dataToAdd['quantity']*dataToAdd['price'];
+            salesValues.push(dataToAdd);
+            var tableContent2 = document.getElementById('sales');
+            tableContent2.innerHTML="";
+            createHeader(tableContent2,tableheader);
+            createtableBody(tableContent2,tableBodyData);
+            salCalc();
+            document.getElementById("purchaseDetails").value =JSON.stringify(salesValues) ;
+            document.getElementById("totalValue").value =sumval ;
+        } 
+
+        function removeItem(indexVal){
+            console.log(indexVal)
+            console.log(salesValues)
+            salesValues.splice(indexVal-1,1);
+            // var tableContent2 = document.getElementById('sales');
+            // createHeader(tableContent2,tableheader);
+            var tableContent2 = document.getElementById('sales');
+            tableContent2.innerHTML="";
+            createHeader(tableContent2,tableheader);
+            createtableBody(tableContent2,salesValues);
+            salCalc();
+            document.getElementById("purchaseDetails").value =JSON.stringify(salesValues) ;
+            document.getElementById("totalValue").value =sumval ;
+        } 
+
+        var tableContent2 = document.getElementById('sales');
+        createHeader(tableContent2,tableheader);
+        createtableBody(tableContent2,tableBodyData);
+
+        function salCalc(){
+            var sumval=0;
+            var totalSales = document.getElementById('total');
+            totalSales.innerHTML="";
+            for (ele in salesValues){
+                sumval = sumval + salesValues[ele]['total']
+            }
+            var spanVal = document.createElement('td');  
+            
+            spanVal.innerHTML= '<h3> Total Bill Amount:'+ sumval+  '</h3>';
+            totalSales.appendChild(spanVal)
+            
+
+        }
+
+        
+
+        salCalc();
+        
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    document.getElementById("purchaseDetails").value =JSON.stringify(salesValues) ;
+    document.getElementById("totalValue").value =sumval ;
+</script>
+</html>
