@@ -9,6 +9,7 @@ priceList={
     'Pidia':400,
     'Khaja':300,
     'Ghujia':400,
+    'Papchi':300,
     'Anarsa':300,
     'Sakkarpara':250,
     'Bidia':250,
@@ -29,7 +30,11 @@ priceList={
     'ChawalSevMurku':200,
     'SabuDanaPapad':300,
     'AlooChips':300,
+    'DawaiLaddu':700,
+    'BundiLaddu':200,
+    'RaitaBundi':200,
 }
+
 listOFItems={
 "item1":{'name':'Laddu','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
 "item2":{'name':'Pidia','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
@@ -55,8 +60,12 @@ listOFItems={
 "item21":{'name':'ChawalSevMurku','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
 "item22":{'name':'SabuDanaPapad','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
 "item23":{'name':'AlooChips','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+"item24":{'name':'DawaiLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':700},
+"item25":{'name':'BundiLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+"item26":{'name':'RaitaBundi','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+"item27":{'name':'Papchi','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
 # "item":{'name':'','imgUrl':'./media/kol-sweet-shops.jpg','price':},
-
+# "item":{'name':'','imgUrl':'./media/kol-sweet-shops.jpg','price':},
 
 }
 
