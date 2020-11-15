@@ -1,3 +1,8 @@
-name,quantity,price,total,cutomerNumber,transactionID
-Laddu,1.0,400,400,xxxxxxx,1605100343
-
+quantity,name,price,total,customerNumber,transactionID
+1.0,Laddu,400,400,,1605419403
+0.5,Pidia,400,200,,1605419403
+0.5,Khaja,300,150,,1605419403
+1,Khaja,300,300,dsfsdfgsedfg,1605419490
+.5,KariLaddu,300,150,dsfsdfgsedfg,1605419490
+.25,KariLaddu,300,75,dsfsdfgsedfg,1605419490
+.25,Khurmi,300,75,dsfsdfgsedfg,1605419490

@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from ast import literal_eval
-# Create your views here.
 import pandas as pd
 import time
+# Create your views here.
 
 priceList={
     'Laddu':400,
@@ -35,69 +35,55 @@ priceList={
     'RaitaBundi':200,
 }
 
-listOFItems={
-"item1":{'name':'Laddu','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
-"item2":{'name':'Pidia','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
-"item3":{'name':'Khaja','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
-"item4":{'name':'Ghujia','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
-"item5":{'name':'Anarsa','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
-"item6":{'name':'Sakkarpara','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
-"item7":{'name':'Bidia','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
-"item8":{'name':'KariLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
-"item9":{'name':'Khurmi','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
-"item10":{'name':'Charkoli','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
-"item11":{'name':'Mathri','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
-"item12":{'name':'Thetri','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
-"item13":{'name':'Namkeen','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
-"item14":{'name':'Mixture1','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
-"item15":{'name':'MixtureChiwda','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
-"item16":{'name':'Sev','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
-"item17":{'name':'LaiBadi','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
-"item18":{'name':'Bijori','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
-"item19":{'name':'RakhiyaBadi','imgUrl':'./media/kol-sweet-shops.jpg','price':600},
-"item19":{'name':'UradBari','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
-"item20":{'name':'ChawalPapad','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
-"item21":{'name':'ChawalSevMurku','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
-"item22":{'name':'SabuDanaPapad','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
-"item23":{'name':'AlooChips','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
-"item24":{'name':'DawaiLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':700},
-"item25":{'name':'BundiLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
-"item26":{'name':'RaitaBundi','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
-"item27":{'name':'Papchi','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+listOFItems=[
+{'name':'Laddu','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
+{'name':'Pidia','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
+{'name':'Khaja','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+{'name':'Ghujia','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
+{'name':'Anarsa','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+{'name':'Sakkarpara','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
+{'name':'Bidia','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
+{'name':'KariLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+{'name':'Khurmi','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+{'name':'Charkoli','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
+{'name':'Mathri','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
+{'name':'Thetri','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
+{'name':'Namkeen','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+{'name':'Mixture1','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+{'name':'MixtureChiwda','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
+{'name':'Sev','imgUrl':'./media/kol-sweet-shops.jpg','price':250},
+{'name':'LaiBadi','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+{'name':'Bijori','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
+{'name':'RakhiyaBadi','imgUrl':'./media/kol-sweet-shops.jpg','price':600},
+{'name':'UradBari','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
+{'name':'ChawalPapad','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+{'name':'ChawalSevMurku','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+{'name':'SabuDanaPapad','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+{'name':'AlooChips','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
+{'name':'DawaiLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':700},
+{'name':'BundiLaddu','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+{'name':'RaitaBundi','imgUrl':'./media/kol-sweet-shops.jpg','price':200},
+{'name':'Papchi','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
 # "item":{'name':'','imgUrl':'./media/kol-sweet-shops.jpg','price':},
 # "item":{'name':'','imgUrl':'./media/kol-sweet-shops.jpg','price':},
 
-}
-
-def index(requests):
-    contex={'listOFItems':listOFItems,"priceList":priceList}
-    return render(requests,'index.html',contex)
+]
 
 
-def submitDetails(requests):
+def index(request):
+    context={'listOFItems':listOFItems,'priceList':priceList}
+    return render(request,'index.html',context)
+
+def submitDetails(request):
     data=pd.read_csv('database.csv')
-    print (requests.POST)
-    customerNumber=requests.POST.get('customerNumber')
-    purchaseDetails=literal_eval(requests.POST.get('purchaseDetails'))
-    # totalValue=int(requests.POST.get('totalValue'))
+    customerNumber= request.POST.get('customerNumber')
+    purchaseDetail=literal_eval(request.POST.get('purchaseDetails'))
+    totalValue=request.POST.get('totalValue')
 
-    xx=pd.DataFrame(purchaseDetails)
-    xx['cutomerNumber']= customerNumber
+    xx =pd.DataFrame(purchaseDetail)
+    xx['customerNumber']=customerNumber
     xx['transactionID']=int(time.time())
-
     data=pd.concat([data,xx])
-    # data=data.reset_index()
     data.to_csv('database.csv',index=False)
-
-    contex={'listOFItems':listOFItems,"priceList":priceList}
-    return render(requests,'index.html',contex)
-
-
-def dashboardView(requests):
-    data=pd.read_csv('database.csv')
-    uniqueCustomer=len(pd.unique(data['cutomerNumber']))
-    uniqueTransaction=len(pd.unique(data['transactionID']))
-    totalSales= sum(data['total'])
-    contex={'uniqueCustomer':uniqueCustomer,"uniqueTransaction":uniqueTransaction,'totalSales':totalSales}
-    return render(requests,'dashboard.html',contex)
-
+    context={'listOFItems':listOFItems,'priceList':priceList}
+    return render(request,'index.html',context)

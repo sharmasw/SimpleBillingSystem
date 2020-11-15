@@ -1,4 +1,4 @@
-"""billing URL Configuration
+"""billingProject URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -21,9 +21,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name='Home'),
-    path('submitDetails',views.submitDetails, name="submitDetails"),
-    path('dashboardView',views.dashboardView, name="dashboardView"),
+    path('',views.index,name="hompage"),
+    path('submitDetails',views.submitDetails,name="submitDetails"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
