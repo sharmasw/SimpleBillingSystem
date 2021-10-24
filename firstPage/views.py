@@ -5,36 +5,6 @@ import time,datetime
 from django.http import JsonResponse
 # Create your views here.
 
-priceList={
-    'Laddu':400,
-    'Pidia':400,
-    'Khaja':300,
-    'Ghujia':400,
-    'Papchi':300,
-    'Anarsa':300,
-    'Sakkarpara':250,
-    'Bidia':250,
-    'KariLaddu':300,
-    'Khurmi':300,
-    'Charkoli':250,
-    'Mathri':250,
-    'Thetri':250,
-    'Namkeen':200,
-    'Mixture1':200,
-    'MixtureChiwda':250,
-    'Sev':250,
-    'LaiBadi':300,
-    'Bijori':400,
-    'RakhiyaBadi':600,
-    'UradBari':400,
-    'ChawalPapad':200,
-    'ChawalSevMurku':200,
-    'SabuDanaPapad':300,
-    'AlooChips':300,
-    'DawaiLaddu':700,
-    'BundiLaddu':200,
-    'RaitaBundi':200,
-}
 
 listOFItems= pd.read_csv('itemDetails.csv')
 listOFItems= [{'name':listOFItems['name'][i],'price':listOFItems['price'][i]} for i in range(listOFItems.shape[0])]
