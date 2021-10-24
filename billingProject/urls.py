@@ -18,11 +18,15 @@ from django.urls import path
 from firstPage import views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name="hompage"),
-    path('submitDetails',views.submitDetails,name="submitDetails"),
+    path('submitDetails',csrf_exempt(views.submitDetails),name="submitDetails"),
+    path('dashboardView',views.dashboardView, name="dashboardView"),
+    path('takedump',views.takeDump,name='takedumo'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

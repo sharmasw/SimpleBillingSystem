@@ -1,6 +1,81 @@
 <html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
 
-    uniqueCustomer:{{uniqueCustomer}}<br>
-    uniqueTransaction: {{uniqueTransaction}}<br>
-    totalSales:{{totalSales}}
+    <body>
+        <div class="col-12">
+        <u1><h2>Varsha Misthan Bhandar 2021</h2><span><a href='/'>Go to Home</a></span></u1>
+</div>
+
+        <div >
+            <div class="col-12">
+                <div class="col-2" style="float: left;">
+                    <h1>Unique Customers <span class="badge badge-secondary">{{totalNumberOfUniqueCustomer}}</span> </h1> 
+                </div>
+                <div class="col-2" style="float: left;">
+                    <h1>Unique Transaction <span class="badge badge-secondary">{{totalNumberOfUniqueTransaction}}</span></h1>
+                </div>
+
+                
+                
+            </div>
+            <br><br><br><br><br><br><br><br>
+            <div class="col-12">
+                <div class="col-4" style="height: 300px; float: left;">
+                <canvas id="myChart"></canvas>
+                
+                </div>
+                <div class="col-8" style="height: 300px; float: left;">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+            <div class="col-12">
+                
+            </div>
+        </div>
+    </body>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: {{last7dayTranscationDates | safe}},
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: {{last7dayTranscationTotals | safe}}
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+    </script>
+    <script>
+        var ctx2 = document.getElementById('myChart2').getContext('2d');
+        var chart2 = new Chart(ctx2, {
+            // The type of chart we want to create
+            type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: {{last20TransactionDates | safe}},
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: {{last20TransactionTotals | safe}}
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+    </script>
 </html>

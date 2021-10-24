@@ -1,14 +1,15 @@
 <html>
-<h2>Sweet Shop 2020</h2>
+<h2>Varsha Misthan Bhandar 2021</h2>
+<span><a href='/dashboardView'>Go to Dashboard</a></span>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="col-9" style="float: left; ">
+    <div class="col-8" style="float: left; ">
 {% for val in listOFItems %}
-<div class="card" style="width: 14rem; float: left; padding-top: 5px; padding-left: 5px;">
-    <img class="card-img-top" src={{val.imgUrl}} alt="Card image cap">
+<div class="card" style="width: 17rem; float: left; padding-top: 2px; padding-left: 5px;">
+    <!-- <img class="card-img-top" src={{val.imgUrl}} alt="Card image cap"> -->
     <div class="card-body">
       <h6 style="float: left;">{{val.name}}</h6> <h5 style="float: right;" >{{val.price}}/- </h5><br><br>
       <input type="button" id='1' name={{val.name}} value="1kg" onclick="addItem({'quantity':this.id,'name':this.name})">
