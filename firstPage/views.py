@@ -6,8 +6,12 @@ from django.http import JsonResponse
 # Create your views here.
 
 
-listOFItems= pd.read_csv('itemDetails.csv')
-listOFItems= [{'name':listOFItems['name'][i],'price':listOFItems['price'][i]} for i in range(listOFItems.shape[0])]
+listOFItems1= pd.read_csv('itemDetails.csv')
+listOFItems= [{'name':listOFItems1['name'][i],'price':listOFItems1['price'][i]} for i in range(listOFItems1.shape[0])]
+priceList={}
+for i in range(listOFItems1.shape[0]):
+    priceList[listOFItems1['name'][i]]=listOFItems1['price'][i]
+
 # {'name':'Laddu','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
 # {'name':'Pidia','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
 # {'name':'Khaja','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
@@ -45,6 +49,7 @@ listOFItems= [{'name':listOFItems['name'][i],'price':listOFItems['price'][i]} fo
 from firstPage.models import BillingDetail,TimeStampDetails
 
 def index(request):
+    # print (priceList)
     context={'listOFItems':listOFItems,'priceList':priceList}
     return render(request,'index.html',context)
 
