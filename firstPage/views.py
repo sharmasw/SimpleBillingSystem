@@ -36,8 +36,8 @@ priceList={
     'RaitaBundi':200,
 }
 
-listOFItems=pd.read_csv('itemDetails.csv')
-listOFItems=[{'name':listOFItems['name'][i],'price':listOFItems['price'][i]} for i in range(listOFItems.shape[0])]
+listOFItems= pd.read_csv('itemDetails.csv')
+listOFItems= [{'name':listOFItems['name'][i],'price':listOFItems['price'][i]} for i in range(listOFItems.shape[0])]
 # {'name':'Laddu','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
 # {'name':'Pidia','imgUrl':'./media/kol-sweet-shops.jpg','price':400},
 # {'name':'Khaja','imgUrl':'./media/kol-sweet-shops.jpg','price':300},
