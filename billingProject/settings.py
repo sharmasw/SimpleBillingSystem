@@ -26,7 +26,7 @@ SECRET_KEY = 'b!03g8i!nc7%$sh1pxb3&1vh&!-h2pa)@m+d%3nf4+4idpj=a8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://varshabilling.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
@@ -128,3 +128,9 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+import os
+import django_heroku
+
+django_heroku.settings(locals())
