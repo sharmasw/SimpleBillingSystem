@@ -119,7 +119,7 @@ def dashboardView(request):
         'transaction_day':i.transaction_day,'transaction_hour':i.transaction_hour,'transaction_minute':i.transaction_minute,'transaction_week':i.transaction_week,'transaction_weekNum':i.transaction_weekNum})
 
     t2=pd.DataFrame(t2)
-    print (t2.shape,t1.shape)
+    # print (t2.shape,t1.shape)
 
     data=pd.merge(t1,t2,on='transactionID',how='left')
     totalNumberOfUniqueCustomer=len(pd.unique(data['customerNumber']))
@@ -137,8 +137,24 @@ def dashboardView(request):
     return render(request,'dashboard.html',context)
 
 def takeDump(request):
-     p = BillingDetail.objects.all()
-     listofNumbers=[]
-     for i in p:
-         listofNumbers.append(i.customerNumber)
-     return JsonResponse({'a':listofNumbers})
+    p = BillingDetail.objects.all()
+    q= TimeStampDetails.objects.all()
+    t1=[]
+    for i in p:
+        t1.append({'customerNumber':i.customerNumber,'transactionID':i.transactionID,'timestamp':i.timestamp,'name':i.name,'quantity':i.quantity,'price':i.price,'total':i.total})
+
+    t1=pd.DataFrame(t1)
+    # print (t1)
+
+    t2=[]
+    for i in q:
+        t2.append({'transactionID':i.transactionID,'transaction_date':i.transaction_date,'transaction_year':i.transaction_year,'transaction_month':i.transaction_month,
+        'transaction_day':i.transaction_day,'transaction_hour':i.transaction_hour,'transaction_minute':i.transaction_minute,'transaction_week':i.transaction_week,'transaction_weekNum':i.transaction_weekNum})
+
+    t2=pd.DataFrame(t2)
+    # print (t2.shape,t1.shape)
+
+    data=pd.merge(t1,t2,on='transactionID',how='left')
+    data.to_csv('dataDump.csv',index=False)
+    context={'listOFItems':listOFItems,'priceList':priceList}
+    return render(request,'index.html',context)
