@@ -118,7 +118,7 @@ def dashboardView(request):
         t2.append({'transactionID':i.transactionID,'transaction_date':i.transaction_date,'transaction_year':i.transaction_year,'transaction_month':i.transaction_month,
         'transaction_day':i.transaction_day,'transaction_hour':i.transaction_hour,'transaction_minute':i.transaction_minute,'transaction_week':i.transaction_week,'transaction_weekNum':i.transaction_weekNum})
 
-    t2=pd.DataFrame(t2)
+    t2=pd.DataFrame(t2) 
     # print (t2.shape,t1.shape)
 
     data=pd.merge(t1,t2,on='transactionID',how='left')
